@@ -97,6 +97,7 @@
         var iconImage, iconShadow, iconShape
 
         function createMarker(latlng, label, html, color) {
+            console.log("createMarker");
 
             var contentString = '<b>' + label + '</b><br>' + html;
             var marker = new google.maps.Marker({
@@ -190,9 +191,10 @@
 
         var onClickHandlerGo = function() {
 
+            initMap();
+            var id = navigator.geolocation.getCurrentPosition(success);
 
             
-            var id = navigator.geolocation.watchPosition(success);
 
 
 
@@ -202,8 +204,10 @@
 
 
 
+
             hideMarkers();
-            markers = [];
+            initMap();
+    
 
 
 
@@ -217,6 +221,7 @@
     for (var i = 0; i < markers.length; i++) {
         markers[i].setMap(null); //Remove the marker from the map
     }
+    
 }
 
 
@@ -225,7 +230,7 @@
 
 
         function showMarkersWithinDistance(latlngcenter, dist, placetype) {
-
+            console.log("e");
 
             latlngsarr = [];
 
@@ -263,6 +268,7 @@
 
 
         function success(pos) {
+            console.log("success");
 
             markers = [];
             if (document.getElementById("isDining").checked == true) {
