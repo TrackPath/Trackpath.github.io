@@ -234,7 +234,6 @@
 
         function showMarkersWithinDistance(latlngcenter, dist, placetype) {
             console.log("e");
-            map.setZoom(12);
 
             latlngsarr = [];
 
@@ -267,7 +266,8 @@
                 }
 
             }
-            map.panTo(LatLng)
+            map.setZoom(11);
+            map.setCenter(LatLng);
         }
 
 
@@ -281,7 +281,6 @@
               showMarkersWithinDistance(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude), 3218.69, 'amusement_park');
               showMarkersWithinDistance(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude), 3218.69, 'aquarium');
               showMarkersWithinDistance(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude), 3218.69, 'park');
-              showMarkersWithinDistance(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude), 3218.69, 'art_gallery');
             }
             if (document.getElementById("isDining").checked == true) {
               showMarkersWithinDistance(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude), 3218.69, 'restaurant');
