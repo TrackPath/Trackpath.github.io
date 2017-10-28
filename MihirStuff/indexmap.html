@@ -70,7 +70,7 @@
 
         .streetViewImage {
             position: absolute;
-            left: 70%;
+            left: 72%;
             top: 50%;
         
            
@@ -123,7 +123,7 @@
             
 
             google.maps.event.addListener(marker, 'click', function() {
-                var url = "https://maps.googleapis.com/maps/api/streetview?size=300x150&location="+latlng.lat().toString()+","+latlng.lng().toString()+"&heading=151.78&pitch=0&key=AIzaSyDwkySP3nSq82zce2Ie-fVPWpRZU1huUQs";
+                var url = "https://maps.googleapis.com/maps/api/streetview?size=300x200&location="+latlng.lat().toString()+","+latlng.lng().toString()+"&heading=151.78&pitch=0&key=AIzaSyDwkySP3nSq82zce2Ie-fVPWpRZU1huUQs";
                 document.getElementById('streetViewImage').src=url;
                 var request = { placeId: place.place_id };
                service.getDetails(request, function(details, status) {
