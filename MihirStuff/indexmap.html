@@ -67,6 +67,14 @@
             cursor: pointer;
             font-size: 12px;
         }
+
+        .streetViewImage {
+            position: absolute;
+            left: 70%;
+            top: 50%;
+        
+           
+        }
     </style>
 </head>
 
@@ -115,9 +123,12 @@
             
 
             google.maps.event.addListener(marker, 'click', function() {
+                var url = "https://maps.googleapis.com/maps/api/streetview?size=300x150&location="+latlng.lat().toString()+","+latlng.lng().toString()+"&heading=151.78&pitch=0&key=AIzaSyDwkySP3nSq82zce2Ie-fVPWpRZU1huUQs";
+                document.getElementById('streetViewImage').src=url;
                 var request = { placeId: place.place_id };
                service.getDetails(request, function(details, status) {
   google.maps.event.addListener(marker, 'click', function() {
+
     infowindow.setContent("Name: "+details.name + "<br />" +"Address: "+details.formatted_address +"<br />" + "Website: "+details.website + "<br />" + "Rating: "+details.rating + "<br />" +"Phone: "+ details.formatted_phone_number);
     infowindow.open(map, this);
    });
@@ -311,6 +322,7 @@
     </script>
 
     <div id="map" style="float:left;width:70%; height:100%"></div>
+    <img id="streetViewImage" class="streetViewImage">
     <div class="wrap1">
         <div class="checklist">
             <h4>Include:</h4>
