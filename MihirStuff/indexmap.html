@@ -3,8 +3,8 @@
 <html>
 
 <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
+    <meta name = "viewport" content = "initial-scale=1.0, user-scalable=no">
+    <meta charset = "utf-8">
     <title>TrackPath</title>
     <style>
         /* Always set the map height explicitly to define the size of the div
@@ -13,8 +13,7 @@
         #map {}
         /* Optional: Makes the sample page fill the window. */
         
-        html,
-        body {
+        html, body {
             height: 100%;
             margin: 0;
             padding: 0;
@@ -70,55 +69,52 @@
 
         .streetViewImage {
             position: absolute;
-            left: 70%;
-            top: 50%;
-        
-           
+            left: 72%;
+            top: 50%;          
         }
 
         .wrap2{
-  width: 20%;
-  position: absolute;
-  top: 10%;
-  left: 82%;
-  transform: translate(-50%, -50%);
-}
+          width: 20%;
+          position: absolute;
+          top: 10%;
+          left: 82%;
+          transform: translate(-50%, -50%);
+        }
 
-      .search {
-  width: 110%;
-  position: relative
+        .search {
+          width: 110%;
+          position: relative
+        }     
 
-}
+        .searchTerm {
+          float: left;
+          width: 90%;
+          border: 3px solid #00B4CC;
+          padding: 5px;
+          height: 20px;
+          border-radius: 5px;
+          outline: none;
+          color: #9DBFAF;
+          font-size: 14px;
+        }
 
-.searchTerm {
-  float: left;
-  width: 90%;
-  border: 3px solid #00B4CC;
-  padding: 5px;
-  height: 20px;
-  border-radius: 5px;
-  outline: none;
-  color: #9DBFAF;
-  font-size: 14px;
-}
+        .searchTerm:focus{
+          color: #00B4CC;
+        }   
 
-.searchTerm:focus{
-  color: #00B4CC;
-}
-
-.searchButton {
-  position: absolute;  
-  right: -50px;
-  width: 60px;
-  height: 36px;
-  border: 1px solid #00B4CC;
-  background: #00B4CC;
-  text-align: center;
-  color: #fff;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 12px;
-}
+        .searchButton {
+          position: absolute;  
+          right: -50px;
+          width: 60px;
+          height: 36px;
+          border: 1px solid #00B4CC;
+          background: #00B4CC;
+          text-align: center;
+          color: #fff;
+          border-radius: 3px;
+          cursor: pointer;
+          font-size: 12px;
+        }
     </style>
 </head>
 
@@ -126,7 +122,6 @@
 
     <script>
         var map, markers;
-
 
         var icons = new Array();
 
@@ -144,39 +139,34 @@
                     new google.maps.Point(9, 34));
             }
             return icons[iconColor];
-
         }
-
-
 
         var iconImage, iconShadow, iconShape
 
         function createMarker(latlng,color,place,service) {
-            console.log("createMarker");
-            var infowindow = new google.maps.InfoWindow();
+          console.log("createMarker");
+          var infowindow = new google.maps.InfoWindow();
 
-            var marker = new google.maps.Marker({
-                position: latlng,
-                draggable: true,
-                map: map,
-                shadow: iconShadow,
-                icon: getMarkerImage(color),
-                shape: iconShape,
-                zIndex: Math.round(latlng.lat() * -100000) << 5
-            });
-            
+          var marker = new google.maps.Marker({
+            position: latlng,
+            draggable: true,
+            map: map,
+            shadow: iconShadow,
+            icon: getMarkerImage(color),
+            shape: iconShape,
+            zIndex: Math.round(latlng.lat() * -100000) << 5
+          });          
 
-            google.maps.event.addListener(marker, 'click', function() {
-                var request = { placeId: place.place_id };
-                var photo = place.photos[0].getUrl({ 'maxWidth': 350, 'maxHeight': 350 }); 
-                document.getElementById('streetViewImage').src=photo;
-               service.getDetails(request, function(details, status) {
+          google.maps.event.addListener(marker, 'click', function() {
+            var request = {placeId: place.place_id };
+            var photo = place.photos[0].getUrl({ 'maxWidth': 300, 'maxHeight': 200 }); 
+            document.getElementById('streetViewImage').src = photo;
+            service.getDetails(request, function(details, status) {
 
-    infowindow.setContent("Name: "+details.name + "<br />" +"Address: "+details.formatted_address +"<br />" + "Website: "+details.website + "<br />" + "Rating: "+details.rating + "<br />" +"Phone: "+ details.formatted_phone_number);
-    infoWindow.set
-    infowindow.open(map,marker);
-   
- });
+          infowindow.setContent("Name: "+details.name + "<br />" +"Address: "+details.formatted_address +"<br />" + "Website: "+details.website + "<br />" + "Rating: "+details.rating + "<br />" +"Phone: "+ details.formatted_phone_number);
+          infoWindow.set
+          infowindow.open(map,marker);
+   });
             });
             markers.push(marker);
             return marker;
@@ -188,15 +178,11 @@
 
         // Origins, anchor positions and coordinates of the marker
         // increase in the X direction to the right and in
-        // the Y direction down.
-
-
-        
+        // the Y direction down.   
 
         function initMap() {
 
              markers = [];
-
 
             icons["red"] = new google.maps.MarkerImage("http://www.geocodezip.com/mapIcons/marker_red.png",
                 // This marker is 20 pixels wide by 34 pixels tall.
@@ -205,9 +191,6 @@
                 new google.maps.Point(0, 0),
                 // The anchor for this image is at 9,34.
                 new google.maps.Point(9, 34));
-
-
-
 
             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 7,
@@ -221,7 +204,6 @@
             infoWindow = new google.maps.InfoWindow({
                 size: new google.maps.Size(150, 50)
             });
-
 
             iconImage = new google.maps.MarkerImage('http://www.geocodezip.com/mapIcons/marker_red.png',
                 // This marker is 20 pixels wide by 34 pixels tall.
@@ -245,50 +227,27 @@
                 coord: [9, 0, 6, 1, 4, 2, 2, 4, 0, 8, 0, 12, 1, 14, 2, 16, 5, 19, 7, 23, 8, 26, 9, 30, 9, 34, 11, 34, 11, 30, 12, 26, 13, 24, 14, 21, 16, 18, 18, 16, 20, 12, 20, 8, 18, 4, 16, 2, 15, 1, 13, 0],
                 type: 'poly'
             };
-             document.getElementById('go').addEventListener('click', onClickHandlerGo);
-             document.getElementById('remove').addEventListener('click', onClickHandlerRemove);
+            document.getElementById('go').addEventListener('click', onClickHandlerGo);
+            document.getElementById('remove').addEventListener('click', onClickHandlerRemove);
 }
 
-
         var onClickHandlerGo = function() {
-
             initMap();
             var id = navigator.geolocation.getCurrentPosition(success);
-
-            
-
-
-
         }
 
         var onClickHandlerRemove = function() {
-
-
-
-
             hideMarkers();
             initMap();
-    
-
-
-
         }
-
-    
+  
         //get point at distance along a polyline:
-
 
     function hideMarkers() {
     for (var i = 0; i < markers.length; i++) {
         markers[i].setMap(null); //Remove the marker from the map
-    }
-    
+    }    
 }
-
-
-
-
-
 
         function showMarkersWithinDistance(latlngcenter, dist, placetype) {
             console.log("e");
@@ -313,11 +272,8 @@
                 }
             }
 
-
             service = new google.maps.places.PlacesService(map);
             service.nearbySearch(request, callback);
-
-
 
             for (var i = 0; i < latlngsarr.length; i++) {
                 if (google.maps.geometry.spherical.computeDistanceBetween(latlngcenter, latlngsarr[i]) < dist) {
@@ -330,12 +286,9 @@
             map.setCenter(latlngcenter);
         }
 
-
-
         function success(pos) {
 
             //calculateAndDisplayRoute(directionsService, directionsDisplay, pos); 
-
 
             console.log("success");
 
@@ -358,8 +311,6 @@
             }
         }
         
-
-
         function handleLocationError(browserHasGeolocation, infoWindow, pos) {
             infoWindow.setPosition(pos);
             infoWindow.setContent(browserHasGeolocation ?
@@ -368,53 +319,34 @@
             infoWindow.open(map);
         }
 
-
-
-    
-
-
-
-          
-         
-
-
-
-
-
-
     </script>
 
-    <div id="map" style="float:left;width:70%; height:100%"></div>
-    <img id="streetViewImage" class="streetViewImage">
-    <div class="wrap1">
-        <div class="checklist">
+    <div id = "map" style = "float:left;width:70%; height:100%"></div>
+    <img id = "streetViewImage" class = "streetViewImage">
+    <div class = "wrap1">
+        <div class = "checklist">
             <h4>Include:</h4>
             <form>
-                <input type="checkbox" id="isAttractions" value="attractions"> Attractions <br>
-                <input type="checkbox" id="isDining" value="dining"> Dining <br>
-                <input type="checkbox" id="isHotels" value="hotels"> Hotels <br>
-                <input type="checkbox" id="isGas" value="gas"> Gas Stations <br>
-                <button id="go" type="button" class="goButton">Go!</button>
-                <button id="remove" type="button" class="removeButton">Remove Markers</button>
+                <input type = "checkbox" id = "isAttractions" value = "attractions"> Attractions <br>
+                <input type = "checkbox" id = "isDining" value = "dining"> Dining <br>
+                <input type = "checkbox" id = "isHotels" value = "hotels"> Hotels <br>
+                <input type = "checkbox" id = "isGas" value = "gas"> Gas Stations <br>
+                <button id = "go" type = "button" class = "goButton">Go!</button>
+                <button id = "remove" type = "button" class = "removeButton">Remove Markers</button>
             </form>
         </div>
     </div>
-    <div class="wrap2">
-      <div class="search">
-          <input type="text" id="endingString" class="searchTerm" placeholder="Enter destination address">
-          <button id="submit" type="button" class="searchButton">Submit</button>
-          <i class="fa fa-search"></i>
+    <div class = "wrap2">
+      <div class = "search">
+          <input type = "text" id = "endingString" class = "searchTerm" placeholder = "Enter destination address">
+          <button id = "submit" type = "button" class = "searchButton">Submit</button>
+          <i class = "fa fa-search"></i>
         </button>
       </div>
   </div>
     <br>
-
-
-    
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwkySP3nSq82zce2Ie-fVPWpRZU1huUQs&amp;libraries=places,geometry&amp;callback=initMap"></script>
-
-
-
+ 
+    <script type = "text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwkySP3nSq82zce2Ie-fVPWpRZU1huUQs&amp;libraries=places,geometry&amp;callback=initMap"></script>
 
 </body>
 
