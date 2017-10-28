@@ -266,7 +266,7 @@
                 }
 
             }
-            map.setZoom(11);
+            map.setZoom(13);
             map.setCenter(LatLng);
         }
 
@@ -284,6 +284,7 @@
             }
             if (document.getElementById("isDining").checked == true) {
               showMarkersWithinDistance(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude), 3218.69, 'restaurant');
+              showMarkersWithinDistance(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude), 3218.69, 'cafe');
             }
             if (document.getElementById("isHotels").checked == true) {
               showMarkersWithinDistance(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude), 3218.69, 'lodging');
@@ -291,9 +292,6 @@
             if (document.getElementById("isGas").checked == true) {
               showMarkersWithinDistance(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude), 3218.69, 'gas_station');
             }
-
-
-
         }
         
 
