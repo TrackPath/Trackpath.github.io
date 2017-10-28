@@ -271,13 +271,20 @@
             console.log("success");
 
             markers = [];
+            if (document.getElementById("isAttractions").checked == true){
+              showMarkersWithinDistance(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude), 3218.69, 'museum');
+              showMarkersWithinDistance(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude), 3218.69, 'amusement_park');
+              showMarkersWithinDistance(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude), 3218.69, 'aquarium');
+              showMarkersWithinDistance(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude), 3218.69, 'park');
+            }
             if (document.getElementById("isDining").checked == true) {
-                showMarkersWithinDistance(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude), 3218.69, 'restaurant');
-
+              showMarkersWithinDistance(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude), 3218.69, 'restaurant');
             }
             if (document.getElementById("isHotels").checked == true) {
-                showMarkersWithinDistance(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude), 3218.69, 'lodging');
-
+              showMarkersWithinDistance(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude), 3218.69, 'lodging');
+            }
+            if (document.getElementById("isGas").checked == true) {
+              showMarkersWithinDistance(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude), 3218.69, 'gas_station');
             }
 
 
