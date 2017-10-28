@@ -99,7 +99,7 @@
 
         var iconImage, iconShadow, iconShape
 
-        function createMarker(latlng,color,place) {
+        function createMarker(latlng,color,place,service) {
             console.log("createMarker");
             var infowindow = new google.maps.InfoWindow();
 
@@ -115,10 +115,13 @@
             
 
             google.maps.event.addListener(marker, 'click', function() {
-                infowindow.setContent('<div><strong>' + place.name + '</strong><br>' +
-                 + '<br>' +
-                place.formatted_address + '</div>');
-                infowindow.open(map, marker);
+                var request = { placeId: place.place_id };
+               service.getDetails(request, function(details, status) {
+  google.maps.event.addListener(marker, 'click', function() {
+    infowindow.setContent("Name: "+details.name + "<br />" +"Address: "+details.formatted_address +"<br />" + "Website: "+details.website + "<br />" + "Rating: "+details.rating + "<br />" +"Phone: "+ details.formatted_phone_number);
+    infowindow.open(map, this);
+   });
+ });
             });
             markers.push(marker);
             return marker;
@@ -235,6 +238,7 @@
         function showMarkersWithinDistance(latlngcenter, dist, placetype) {
             console.log("e");
             var place;
+            var service;
 
             latlngsarr = [];
 
@@ -249,13 +253,13 @@
                 if (status == google.maps.places.PlacesServiceStatus.OK) {
                     for (var i = 0; i < results.length; i++) {
                         place = results[i];
-                        createMarker(place.geometry.location, "",place);
+                        createMarker(place.geometry.location, "",place,service);
                     }
                 }
             }
 
 
-            var service = new google.maps.places.PlacesService(map);
+            service = new google.maps.places.PlacesService(map);
             service.nearbySearch(request, callback);
 
 
@@ -263,7 +267,7 @@
             for (var i = 0; i < latlngsarr.length; i++) {
                 if (google.maps.geometry.spherical.computeDistanceBetween(latlngcenter, latlngsarr[i]) < dist) {
 
-                    createMarker(latlngsarr[i], "", place);
+                    createMarker(latlngsarr[i], "", place,service);
                 }
 
             }
