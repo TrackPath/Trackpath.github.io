@@ -88,7 +88,10 @@
 }
 
 .checklist{
-  top:100px;
+  width: 20%;
+  position: absolute;
+  top: 20%;
+  left: 73%;
   margin: 10px 10px 10px 10px;
 }
 
@@ -406,20 +409,19 @@ function createMarker(latlng, label, html, color) {
       </div>
     </div> 
 
-    <div class = "checklist">
-      <form action="/action_page.php" method="get">
-        <input type="checkbox" name="selector"> Attractions <br>
-        <input type="checkbox" name="selector"> Dining <br>
-        <input type="checkbox" name="selector"> Hotels <br>
-        <input type="checkbox" name="selector"> Gas Stations <br>
-        <input type="submit" value = "Submit">
+    <div class = "checklist" >
+      <h4>Include:</h4>
+      <form>
+        <input type="checkbox" name="selector" value = "attractions"> Attractions <br>
+        <input type="checkbox" name="selector" value = "dining"> Dining <br>
+        <input type="checkbox" name="selector" value = "hotels"> Hotels <br>
+        <input type="checkbox" name="selector" value = "gas"> Gas Stations <br>
+        <input type="submit" value = "Go!">
       </form>
     </div>
 
-  </div>
 
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPKSQfUFfgiu9W_w7DFhDz39vOZPvwTJ0&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCPKSQfUFfgiu9W_w7DFhDz39vOZPvwTJ0&callback=initMap">
     </script>
 
     
