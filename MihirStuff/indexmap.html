@@ -12,7 +12,10 @@
         /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
         
-        #map {}
+        #map {
+            max-width: 60%;
+            height: auto;
+        }
         /* Optional: Makes the sample page fill the window. */
         
         html, body {
@@ -23,6 +26,8 @@
         }
         
         .wrap1 {
+            max-width: 40%;
+            height: auto;
             width: 40%;
             position: absolute;
             top: 5%;
@@ -31,7 +36,8 @@
         }
         
         .checklist {
-            width: 30%;
+            max-width: 30%;
+            height: auto;
             position: absolute;
             top: 20%;
             left: 73%;
@@ -39,11 +45,11 @@
         }
         
         .goButton {
+            max-width: 100%;
+            height: auto;
             position: absolute;
             left: 10%;
             top: 120%;
-            width: 60%;
-            height: 30%;
             border: 1px solid #00B4CC;
             background: #00B4CC;
             text-align: center;
@@ -62,7 +68,8 @@
         }
 
         .wrap2{
-          width: 20%;
+            max-width: 20%;
+            height: auto;
           position: absolute;
           top: 10%;
           left: 82%;
@@ -182,6 +189,11 @@
                 coord: [9, 0, 6, 1, 4, 2, 2, 4, 0, 8, 0, 12, 1, 14, 2, 16, 5, 19, 7, 23, 8, 26, 9, 30, 9, 34, 11, 34, 11, 30, 12, 26, 13, 24, 14, 21, 16, 18, 18, 16, 20, 12, 20, 8, 18, 4, 16, 2, 15, 1, 13, 0],
                 type: 'poly'
             };
+            google.maps.event.addDomListener(window, "resize", function() {
+    var center = map.getCenter();
+    google.maps.event.trigger(map, "resize");
+    map.setCenter(center); 
+});
             document.getElementById('go').addEventListener('click', onClickHandlerGo);
             
 }
